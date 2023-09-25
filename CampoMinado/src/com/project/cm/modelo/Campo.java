@@ -69,7 +69,9 @@ public class Campo {
 				
 				throw new ExplosaoException();
 				
-			} else if(vizinhacaSegura()) {
+			} 
+			
+			if(vizinhacaSegura()) {
 				
 				vizinhos.forEach(v -> v.abrir());
 				
@@ -120,19 +122,15 @@ public class Campo {
 		marcado = false;
 	}
 	
-	public String toString() {
+	
+	void setAberto(boolean aberto) {
 		
-		if(marcado) 
-			return "x";
-		else if(aberto && minado)
-			return "*";
-		else if(aberto && minasNaVizinhanca() > 0)
-			return Long.toString(minasNaVizinhanca());
-		else if(aberto)
-			return " ";
-		else 
-			return "?";
+		this.aberto = aberto;
+	}
+
+	public boolean isMinado() {
 		
+		return minado;
 	}
 	
 	public boolean isAberto() {
@@ -153,6 +151,21 @@ public class Campo {
 	public int getColuna() {
 		
 		return coluna;
+	}
+	
+	public String toString() {
+		
+		if(marcado) 
+			return "x";
+		else if(aberto && minado)
+			return "*";
+		else if(aberto && minasNaVizinhanca() > 0)
+			return Long.toString(minasNaVizinhanca());
+		else if(aberto)
+			return " ";
+		else 
+			return "?";
+		
 	}
 	
 
